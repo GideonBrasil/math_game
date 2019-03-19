@@ -3,7 +3,7 @@
 - one for player
   - requests input for player names creates 2 players, assigns player lives, stores 2 players names in initialize, method for player losing life
 - one for Game
-  - controls game flow, outputs player names, outputs players score at end of every turn, game loop for each players turn, output game over at the end of every turn
+  - controls game flow, holds player turns, outputs player names, outputs players score at end of every turn, game loop for each players turn, output game over at the end of every turn
 - one for questions
   - generate random question every turn, output question
 

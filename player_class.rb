@@ -1,15 +1,12 @@
 class Player
-    attr_reader :name
+    attr_reader :name, :lives
 
-    def initialize player
-        @name = player
-        @lives = 0
+    def initialize name
+        @name = name
+        @lives = 3
     end
 
-    def start
-        puts 'Time to play an awesome nerd game!'
+    def lose_life
+        @lives -= 1
     end
 end
-
-game = Player.new 'Gideon'
-game.start
