@@ -7,8 +7,9 @@ class Player
     end
 
     def start
-        puts ('Time to play an awesome nerd game!')
-        
+        puts 'Time to play an awesome nerd game!'
+    end
+end
 
-print "> "
-        choice = $stdin.gets.chomp
+game = Player.new 'Gideon'
+game.start
