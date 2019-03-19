@@ -1,4 +1,4 @@
-require './questions_class'
+require 'timeout'
 
 class Game
     attr_reader :player_turn, :player1, :player2
@@ -16,16 +16,24 @@ class Game
     end
 
     def new_answer
-        @player_answer = gets.chomp.to_i
+        begin
+            Timeout::timeout 3 do
+                @player_answer = gets.chomp.to_i
+            end
+            rescue  Timeout::Error
+                 puts "Too slow"
+    end
         check_answer
     end
 
     def check_answer
-        if @player_answer != @answer
-            puts "#{@player_turn}: Seriously? You're as dumb as a doornail!"
-            check_player_lives
-        else
-            puts "#{@player_turn}: YES! You are correct"
+        if @player_answer
+            if @player_answer != @answer
+                puts "#{@player_turn}: Seriously? You're as dumb as a doornail!"
+                check_player_lives
+            else
+                puts "#{@player_turn}: YES! You are correct"
+            end
         end
         puts "P1 #{@player1.lives}/3 vs P2 #{@player2.lives}/3"
         game_continue_or_end
@@ -40,7 +48,7 @@ class Game
     end
 
     def game_continue_or_end
-        if @player1.lives.zero? || @player2.lives.zero? == 0
+        if @player1.lives.zero? || @player2.lives.zero?
             end_game
         else
             continue_game
@@ -63,6 +71,7 @@ class Game
             puts ''
             puts '----- GAME OVER -----'
             puts ''
+            puts "Geez... Go study some more math #{@player1.name}."
             puts 'Good bye!'
             exit(0)
         else 
@@ -70,6 +79,7 @@ class Game
             puts ''
             puts '----- GAME OVER -----'
             puts ''
+            puts "Geez... Go study some more math #{@player2.name}."
             puts 'Good bye!'
             exit(0)
         end
