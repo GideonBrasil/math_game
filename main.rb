@@ -6,14 +6,20 @@ require './player_class'
 require './questions_class'
 
 puts 'Time to play an awesome nerd game!'
-puts '----------------------------------'
-puts 'Type in player1"s name: '
+puts '----------- START GAME -----------'
+puts ''
+puts "Type in player1's name: "
 print '> '
 player1 = $stdin.gets.chomp
 puts '----------------------------------'
-puts 'Type in player2"s name: '
+puts "Type in player2's name: "
 print '> '
 player2 = $stdin.gets.chomp
 puts '----------------------------------'
 
-game = Game.new
+player1 = Player.new player1
+player2 = Player.new player2
+
+game = Game.new player1, player2
+
+game.start
